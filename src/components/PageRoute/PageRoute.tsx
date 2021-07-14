@@ -12,9 +12,6 @@ type IProps = FC<
 export const PageRoute: IProps = ({ component: Component, ...rest }) => {
   const isAuth = useSelector(selectAuth);
 
-  console.log('IS AUTH ', isAuth);
-  console.log('COMPONENT ', Component);
-  console.log('REST ', rest);
   return (
     <Route
       {...rest}

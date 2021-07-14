@@ -9,9 +9,15 @@ const initialState: AuthStore = {
   error: null,
 };
 
-export const signInRequested = createAction<AuthValues>('SIGN_IN_REQUESTED');
-export const signInSuccess = createAction<User>('SIGN_IN_SUCCESS');
-export const signInFailure = createAction<string>('SIGN_IN_FAILURE');
+const signInRequested = createAction<AuthValues>('SIGN_IN_REQUESTED');
+const signInSuccess = createAction<User>('SIGN_IN_SUCCESS');
+const signInFailure = createAction<string>('SIGN_IN_FAILURE');
+
+const signOutRequested = createAction('SIGN_OUT_REQUESTED');
+const signOutSuccess = createAction('SIGN_OUT_SUCCESS');
+const signOutFailure = createAction<string>('SIGN_OUT_FAILURE');
+
+const sessionSignOutRequested = createAction('SESSION_SIGN_OUT_REQUESTED');
 
 const AuthSlice = createSlice({
   name: 'auth',
@@ -35,12 +41,36 @@ const AuthSlice = createSlice({
       .addCase(signInFailure, (state, { payload }) => {
         state.loading = 'idle';
         state.error = payload;
+      })
+      .addCase(signOutRequested, state => {
+        state.loading = 'pending';
+      })
+      .addCase(sessionSignOutRequested, state => {
+        state.loading = 'pending';
+      })
+      .addCase(signOutSuccess, state => {
+        state.loading = 'idle';
+        state.isAuth = false;
+        state.user = null;
+      })
+      .addCase(signOutFailure, (state, { payload }) => {
+        state.loading = 'idle';
+        state.error = payload;
       });
   },
 });
 
 const { actions: sliceActions } = AuthSlice;
 
-export const actions = { ...sliceActions, signInRequested, signInSuccess, signInFailure };
+export const actions = {
+  ...sliceActions,
+  signInRequested,
+  signInSuccess,
+  signInFailure,
+  signOutRequested,
+  signOutSuccess,
+  signOutFailure,
+  sessionSignOutRequested,
+};
 
 export const { reducer } = AuthSlice;

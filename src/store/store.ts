@@ -5,7 +5,7 @@ import { persistStore } from 'redux-persist';
 import { createBrowserHistory } from 'history';
 import { routerMiddleware } from 'connected-react-router';
 
-import { watchLogInAsync } from '../features/auth/sagas';
+import rootSaga from '../features/auth/sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -20,7 +20,7 @@ export const store = configureStore({
 
 export const persistor = persistStore(store);
 
-sagaMiddleware.run(watchLogInAsync);
+sagaMiddleware.run(rootSaga);
 
 export type RootState = ReturnType<typeof store.getState>;
 

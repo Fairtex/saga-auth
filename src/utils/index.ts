@@ -6,6 +6,11 @@ export const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, 
 export const fetchAuth = (ms: number, user: AuthValues) =>
   delay(ms).then(() => ({ name: user.name, email: user.email }));
 
+export const fetchLogOut = (ms: number) =>
+  delay(ms).then(() => {
+    console.log('LOGOUT');
+  });
+
 export const forwardTo = (location: string) => {
   history.push(location);
 };

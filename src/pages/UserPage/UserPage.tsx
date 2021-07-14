@@ -1,11 +1,18 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import styled from 'styled-components';
 import { MainLayout } from '../../layouts';
 import { selectUserData } from '../../features/auth';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { actions } from '../../features/auth';
 
 export const UserPage: FC = () => {
   const userData = useSelector(selectUserData);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setTimeout(() => dispatch(actions.sessionSignOutRequested()), 5000);
+  }, []);
+
   return (
     <MainLayout>
       <Container>

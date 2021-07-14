@@ -16,7 +16,7 @@ export const Header: FC<HeaderProps> = ({ isAuth }) => {
       <Container>
         <Navigation>
           {isAuth ? (
-            <UIButton onClick={() => dispatch(actions.signOut())} text="logout" />
+            <UIButton onClick={() => dispatch(actions.signOutRequested())} text="logout" />
           ) : (
             <StyledLink href="/sign-in" text="Sign In" />
           )}
