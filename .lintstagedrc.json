@@ -1,0 +1,3 @@
+{
+  "src/**/*.{ts,tsx}": ["yarn lint:css", "yarn lint:tsx:fix", "yarn prettier:fix"]
+}

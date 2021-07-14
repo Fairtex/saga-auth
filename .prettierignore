@@ -1,0 +1,3 @@
+node_modules
+src/types/global-types.ts
+src/aws-exports.js
