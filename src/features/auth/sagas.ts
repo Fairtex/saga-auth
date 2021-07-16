@@ -46,9 +46,9 @@ function* watchLogInAsync() {
   yield takeLeading(actions.signInRequested, logInAsync);
 }
 
-function* watchLogInSocket(): any {
+function* watchLogInSocket() {
   yield call(SocketService.connect);
-  const socketChannel = yield call(createWebSocketChannel, SocketService.client!);
+  const socketChannel: string = yield call(createWebSocketChannel, SocketService.client as WebSocket);
 
   while (true) {
     const payload: string = yield take(socketChannel);
