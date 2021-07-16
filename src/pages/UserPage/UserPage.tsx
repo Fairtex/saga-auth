@@ -9,9 +9,9 @@ export const UserPage: FC = () => {
   const userData = useSelector(selectUserData);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    setTimeout(() => dispatch(actions.sessionSignOutRequested()), 5000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => dispatch(actions.sessionSignOutRequested()), 5000);
+  // }, []);
 
   return (
     <MainLayout>
